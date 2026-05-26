@@ -1,17 +1,18 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test'; // import test to create test case and expect for validation
 
-test("Login", async ({ page }) => {
-  await page.goto("https://leaftaps.com/opentaps/control/main");
+test("Login", async ({ page }) => { // define Login test and get browser page
 
-  await page.locator("#username").fill("democsr");
-  await page.locator("#password").fill("crmsfa");
-  await page.locator(".decorativeSubmit").click();
+  await page.goto("https://leaftaps.com/opentaps/control/main"); // open application URL
 
-  const title = await page.title();
-  console.log('Title of the page is: ' + title);
+  await page.locator("#username").fill("democsr"); // locate username field by id and enter value
+  await page.locator("#password").fill("crmsfa"); // locate password field by id and enter value
+  await page.locator(".decorativeSubmit").click(); // locate login button by class and click
 
-  // Optional validation (recommended)
-  await expect(page).toHaveTitle(/Leaftaps/);
+  const title = await page.title(); // capture page title
+  console.log('Title of the page is: ' + title); // print title in console
 
-  await page.locator("text=CRM/SFA").click();
+  await expect(page).toHaveTitle(/Leaftaps/); // validate page title contains "Leaftaps"
+
+  await page.locator("text=CRM/SFA").click(); // locate CRM/SFA link by text and click
+
 });
